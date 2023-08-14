@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Autenticação com o Google</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding: 20px 0;
+        }
+
+        #container {
+            max-width: 400px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #logo img {
+            margin-bottom: 0px;
+            max-width: 400px;
+            /* Defina o tamanho máximo da imagem */
+        }
+
+        #fornoImage img {
+            max-width: 400px;
+            /* Defina o tamanho máximo da imagem */
+        }
+
+        /* Estilo do botão */
+        .button {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+        .box-container {
+            /* ... Existing properties ... */
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            width: 100%;
+            max-width: 400px;
+            /* Match the max-width of the container */
+            margin-top: 10px;
+            /* Add some spacing between image and boxes */
+            align-self: flex-start;
+            /* Align with the top of the image */
+        }
+
+        .text-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            width: 100%;
+            max-width: 400px;
+            /* Match the max-width of the container */
+            margin-top: 10px;
+            margin-left: 10px;
+            margin-right: 10px;
+            /* Add some spacing between image and boxes */
+            align-self: flex-start;
+            font-size: 20px;
+        }
+
+        .anotacoes {
+            width: 100%;
+            max-width: 400px;
+            /* Match the max-width of the container */
+            margin-top: 10px;
+            margin-left: 10px;
+            margin-right: 10px;
+            /* Add some spacing between image and boxes */
+            font-size: 20px;
+            text-align: left;
+            /* Alinhe o texto à esquerda */
+        }
+
+        .status_image {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 400px;
+            /* Match the max-width of the container */
+            margin-top: 10px;
+            /* Add some spacing between boxes and texts */
+            position: relative;
+        }
+
+        .status_image img {
+            width: 25%;
+            /* Defina a largura das imagens como 25% para quatro imagens lado a lado */
+            max-height: 100%;
+            /* Define a altura máxima como 100% para manter a proporção */
+        }
+
+        .box {
+            flex: 1;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .box:nth-child(1) {
+            background-color: #FFC300;
+        }
+
+        .box:nth-child(2) {
+            background-color: #FF5733;
+        }
+
+        .box:nth-child(3) {
+            background-color: #C70039;
+        }
+
+        .box:nth-child(4) {
+            background-color: #900C3F;
+        }
+
+        .status_fornos-border {
+            border: 1px dashed #999;
+            /* Estilo do contorno pontilhado */
+            padding: 10px;
+            /* Espaçamento interno */
+            margin: 10px 0;
+            /* Espaçamento externo */
+        }
+
+        .anotacao-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .anotacao-row p,
+        .anotacao-row input,
+        .anotacao-row button {
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <div id="telas">
+            <div id="sistemaIIOT" , style="display: block;">
+                <h1 id="titulo">Sistema IIOT</h1>
+                <div id="logo">
+                    <img src="img/logo.png" alt="">
+                </div>
+                <div id="fornoImage" style="display: none;">
+                    <img src="img/forno.png" alt="Forno">
+                    <div class="box-container">
+                        <div class="box" id="box1">
+                            <p>F1</p>
+                        </div>
+                        <div class="box" id="box2">
+                            <p>F2</p>
+                        </div>
+                        <div class="box" id="box3">
+                            <p>F3</p>
+                        </div>
+                        <div class="box" id="box4">
+                            <p>F4</p>
+                        </div>
+                    </div>
+                    <div class="text-container">
+                        <p id="F1_Value">Text 1 </p>
+                        <p id="F2_Value">Text 2 </p>
+                        <p id="F3_Value">Text 3 </p>
+                        <p id="F4_Value">Text 4 </p>
+                    </div>
+                </div>
+            </div>
+            <div id="status_Fornos" style="display: none;">
+                <div class="status_fornos-border">
+                    <h1 id="titulo2">Status dos Fornos</h1>
+                    <div class="status_image">
+                        <img src="img/status0.png" alt="Image_1">
+                        <img src="img/status0.png" alt="Image_2">
+                        <img src="img/status0.png" alt="Image_3">
+                        <img src="img/status0.png" alt="Image_4">
+                    </div>
+                    <div class="anotacoes">
+                        <p>Anotaçôes: </p>
+                        <p id="Obs_F1">Obs F1 </p>
+                        <p id="Obs_F2">Obs F2 </p>
+                        <p id="Obs_F3">Obs F3 </p>
+                        <p id="Obs_F4">Obs F4 </p>
+                    </div>
+                </div>
+            </div>
+            <div id="tela_anotacoes" style="display: none;">
+                <div class="anotacoes_border">
+                    <h1 id="titulo2">Anotações dos Fornos</h1>
+                    <div class="anotacao-row">
+                        <p>Forno1:</p>
+                        <input type="text" id="anotacaoF1" placeholder="Insira sua observação">
+                        <button id="btnanotacaoF1" class="button" onclick="AtualizarObsF1()">Alterar</button>
+                    </div>
+                    <div class="anotacao-row">
+                        <p>Forno2:</p>
+                        <input type="text" id="anotacaoF2" placeholder="Insira sua observação">
+                        <button id="btnanotacaoF2" class="button" onclick="AtualizarObsF2()">Alterar</button>
+                    </div>
+                    <div class="anotacao-row">
+                        <p>Forno3:</p>
+                        <input type="text" id="anotacaoF3" placeholder="Insira sua observação">
+                        <button id="btnanotacaoF3" class="button" onclick="AtualizarObsF3()">Alterar</button>
+                    </div>
+                    <div class="anotacao-row">
+                        <p>Forno4:</p>
+                        <input type="text" id="anotacaoF4" placeholder="Insira sua observação">
+                        <button id="btnanotacaoF3" class="button" onclick="AtualizarObsF4()">Alterar</button>
+                    </div>
+                </div>
+            </div>
+            <div id="LoginScreen">
+                <button id="login" class="button">Login com Google</button>
+            </div>
+            <div id="dashboard" style="display: none;">
+                <div id="userDetails"></div>
+                <button id="statusButton" class="button">Status Fornos</button>
+                <button id="anotacoesButton" class="button"> Anotações</button>
+                <button id="logout" class="button">Logout</button>
+            </div>
+        </div>
+
+        <p>Desenvolvedor: Helton H. Pontes</p>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase.js"></script>
+    <script>
+        // Configuração do Firebase
+        var firebaseConfig = {
+            apiKey: "AIzaSyChoo56vG5fai27Imu4NDbjb2uAoRJ9BmI",
+            authDomain: "dwm-atvd1.firebaseapp.com",
+            databaseURL: "https://dwm-atvd1-default-rtdb.firebaseio.com",
+            projectId: "dwm-atvd1",
+            storageBucket: "dwm-atvd1.appspot.com",
+            messagingSenderId: "870118301587",
+            appId: "1:870118301587:web:cdd2cd93c3618af70e1266",
+            measurementId: "G-BGGVGLZJEP"
+        };
+        firebase.initializeApp(firebaseConfig);
+
+        // Manipulação do DOM
+        const container = document.getElementById('container');
+        const loginScreen = document.getElementById('LoginScreen');
+        const dashboard = document.getElementById('dashboard');
+        const userDetails = document.getElementById('userDetails');
+
+        const loginButton = document.getElementById('login');
+        const logoutButton = document.getElementById('logout');
+
+        const statusButton = document.getElementById('statusButton');
+        const statusButton1 = document.getElementById('statusButton1');
+        const statusFornosContent = document.getElementById('status_Fornos').innerHTML;
+
+        const anotacoesButton = document.getElementById('anotacoesButton');
+        const anotacoesContent = document.getElementById('tela_anotacoes').innerHTML;
+
+        var estadoAtual = document.body.innerHTML;
+
+        var db = firebase.database();
+
+        db.ref("Forno1/temp").on('value', (snapshot) => {
+            F1_Value.textContent = "F1 = " + snapshot.val() + "°C   ";
+            var boxF1 = document.getElementById('box1');
+            if (snapshot.val() < 537) {
+                boxF1.style.backgroundColor = 'rgb(140,115,115) ';
+            } else if (snapshot.val() >= 537 && snapshot.val() < 815) {
+                boxF1.style.backgroundColor = 'rgb(204,0,0)';
+            }
+            else if (snapshot.val() >= 815 && snapshot.val() < 980) {
+                boxF1.style.backgroundColor = 'rgb(255,136,51)';
+            }
+            else if (snapshot.val() >= 980 && snapshot.val() < 1100) {
+                boxF1.style.backgroundColor = 'rgb(255,247,0)';
+            }
+        });
+        db.ref("Forno2/temp").on('value', (snapshot) => {
+            F2_Value.textContent = "    F2 = " + snapshot.val() + "°C   ";
+            var boxF2 = document.getElementById('box2');
+            if (snapshot.val() < 537) {
+                boxF2.style.backgroundColor = 'rgb(140,115,115) ';
+            } else if (snapshot.val() >= 537 && snapshot.val() < 815) {
+                boxF2.style.backgroundColor = 'rgb(204,0,0)';
+            }
+            else if (snapshot.val() >= 815 && snapshot.val() < 980) {
+                boxF2.style.backgroundColor = 'rgb(255,136,51)';
+            }
+            else if (snapshot.val() >= 980 && snapshot.val() < 1100) {
+                box21.style.backgroundColor = 'rgb(255,247,0)';
+            }
+        });
+        db.ref("Forno3/temp").on('value', (snapshot) => {
+            F3_Value.textContent = "    F3 = " + snapshot.val() + "°C   ";
+            var boxF3 = document.getElementById('box3');
+            if (snapshot.val() < 537) {
+                boxF3.style.backgroundColor = 'rgb(140,115,115) ';
+            } else if (snapshot.val() >= 537 && snapshot.val() < 815) {
+                boxF3.style.backgroundColor = 'rgb(204,0,0)';
+            }
+            else if (snapshot.val() >= 815 && snapshot.val() < 980) {
+                boxF3.style.backgroundColor = 'rgb(255,136,51)';
+            }
+            else if (snapshot.val() >= 980 && snapshot.val() < 1100) {
+                boxF3.style.backgroundColor = 'rgb(255,247,0)';
+            }
+        });
+        db.ref("Forno4/temp").on('value', (snapshot) => {
+            F4_Value.textContent = "    F4 = " + snapshot.val() + "°C   ";
+            var boxF4 = document.getElementById('box4');
+            if (snapshot.val() < 537) {
+                boxF4.style.backgroundColor = 'rgb(140,115,115) ';
+            } else if (snapshot.val() >= 537 && snapshot.val() < 815) {
+                boxF4.style.backgroundColor = 'rgb(204,0,0)';
+            }
+            else if (snapshot.val() >= 815 && snapshot.val() < 980) {
+                boxF4.style.backgroundColor = 'rgb(255,136,51)';
+            }
+            else if (snapshot.val() >= 980 && snapshot.val() < 1100) {
+                boxF4.style.backgroundColor = 'rgb(255,247,0)';
+            }
+        });
+
+        statusButton.addEventListener('click', () => {
+            container.innerHTML = statusFornosContent;
+            db.ref("Forno1/status").on('value', (snapshot) => {
+                const imageF1 = document.querySelector('.status_image img:nth-child(1)'); // Primeira imagem
+                if (snapshot.val() === 0) {
+                    imageF1.src = "img/status0.png";
+                } else if (snapshot.val() === 1) {
+                    imageF1.src = "img/status1.png"
+                }
+                else if (snapshot.val() === 2) {
+                    imageF1.src = "img/status2.png"
+                }
+            });
+
+            db.ref("Forno2/status").on('value', (snapshot) => {
+                const imageF1 = document.querySelector('.status_image img:nth-child(2)'); // Primeira imagem
+                if (snapshot.val() === 0) {
+                    imageF2.src = "img/status0.png";
+                } else if (snapshot.val() === 1) {
+                    imageF2.src = "img/status1.png"
+                }
+                else if (snapshot.val() === 2) {
+                    imageF2.src = "img/status2.png"
+                }
+            });
+
+            db.ref("Forno3/status").on('value', (snapshot) => {
+                const imageF3 = document.querySelector('.status_image img:nth-child(3)'); // Primeira imagem
+                if (snapshot.val() === 0) {
+                    imageF3.src = "img/status0.png";
+                } else if (snapshot.val() === 1) {
+                    imageF3.src = "img/status1.png"
+                }
+                else if (snapshot.val() === 2) {
+                    imageF3.src = "img/status2.png"
+                }
+            });
+
+            db.ref("Forno4/status").on('value', (snapshot) => {
+                const imageF4 = document.querySelector('.status_image img:nth-child(4)'); // Primeira imagem
+                if (snapshot.val() === 0) {
+                    imageF4.src = "img/status0.png";
+                } else if (snapshot.val() === 1) {
+                    imageF4.src = "img/status1.png"
+                }
+                else if (snapshot.val() === 2) {
+                    imageF4.src = "img/status2.png"
+                }
+            });
+
+            db.ref("Forno1/obs").on('value', (snapshot) => {
+                Obs_F1.textContent = "Forno 1: " + snapshot.val();
+
+            });
+            db.ref("Forno2/obs").on('value', (snapshot) => {
+                Obs_F2.textContent = "Forno 2: " + snapshot.val();
+
+            });
+            db.ref("Forno3/obs").on('value', (snapshot) => {
+                Obs_F3.textContent = "Forno 3: " + snapshot.val();
+
+            });
+            db.ref("Forno4/obs").on('value', (snapshot) => {
+                Obs_F4.textContent = "Forno 4: " + snapshot.val();
+
+            });
+        });
+
+
+
+        anotacoesButton.addEventListener('click', () => {
+            container.innerHTML = anotacoesContent;
+        });
+
+        function AtualizarObsF1() {
+            var textoInput = document.getElementById("anotacaoF1").value;
+            db.ref('Forno1/obs').set(textoInput);
+        }
+        function AtualizarObsF2() {
+            var textoInput = document.getElementById("anotacaoF2").value;
+            db.ref('Forno2/obs').set(textoInput);
+        }
+        function AtualizarObsF3() {
+            var textoInput = document.getElementById("anotacaoF3").value;
+            db.ref('Forno3/obs').set(textoInput);
+        }
+        function AtualizarObsF4() {
+            var textoInput = document.getElementById("anotacaoF4").value;
+            db.ref('Forno4/obs').set(textoInput);
+        }
+
+        function handleAuthChange(user) {
+            const titulo = document.getElementById('titulo');
+            const box_container = document.querySelector('.boxs');
+            const logo = document.getElementById('logo');
+            const fornoImage = document.getElementById('fornoImage');
+            const logoutButton = document.getElementById('logout');
+
+            if (user) {
+                loginScreen.style.display = 'none';
+                dashboard.style.display = 'block';
+                titulo.textContent = 'Monitoramento de Temperartura';
+                logo.style.display = 'none';
+                fornoImage.style.display = 'block';
+                box_container.style.display = 'flex';
+                logoutButton.style.display = 'block';
+
+            } else {
+                loginScreen.style.display = 'block';
+                dashboard.style.display = 'none';
+                titulo.textContent = 'Sistema IIOT';
+                logo.style.display = 'block';
+                fornoImage.style.display = 'none';
+                box_container.style.display = 'none';
+                logoutButton.style.display = 'none';
+            }
+        }
+
+        function Voltar() {
+            loginScreen.style.display = 'none';
+            dashboard.style.display = 'block';
+            //titulo.textContent = 'Monitoramento de Temperatura';
+            logo.style.display = 'block';
+            //fornoImage.style.display = 'block';
+            box_container.style.display = 'flex';
+            logoutButton.style.display = 'block';
+        }
+
+        function GoogleLogin() {
+            firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider())
+                .then(res => handleAuthChange(res.user))
+                .catch(e => console.log(e));
+        }
+
+        function LogoutUser() {
+            firebase.auth().signOut()
+                .then(() => handleAuthChange(null))
+                .catch(e => console.log(e));
+        }
+
+        loginButton.addEventListener('click', GoogleLogin);
+        logoutButton.addEventListener('click', LogoutUser);
+
+        firebase.auth().onAuthStateChanged(handleAuthChange);
+    </script>
+</body>
+
+</html>
